@@ -1,14 +1,14 @@
 #!/bin/sh
 set -eu
 
-if ! TMUX_BIN="$(command -v tmux)"; then
-  echo 'tmux not found' >&2
+TMUX_BIN="$(command -v tmux || {
+  echo 'tmux not found'
   exit 1
-fi
-if ! ROFI_BIN="$(command -v rofi)"; then
-  echo 'rofi not found' >&2
+})"
+ROFI_BIN="$(command -v rofi || {
+  echo 'rofi not found'
   exit 1
-fi
+})"
 ROFI_OPTS='-dmenu -i -p "Sessions:" -lines 10'
 
 terminal="kitty"
